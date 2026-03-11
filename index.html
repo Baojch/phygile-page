@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PhyGile: Physics-Prefix Guided Motion Generation for Agile General Humanoid Motion Tracking">
+  <meta name="keywords" content="PhyGile, Humanoid, Motion Tracking, Reinforcement Learning, Physics-based">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PhyGile: Physics-Prefix Guided Motion Generation for Agile General Humanoid Motion Tracking</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="phygile">PhyGile</span>: Physics-Prefix Guided Motion Generation for Agile General Humanoid Motion Tracking</h1>
+          <!-- Authors -->
+          <div class="author-list">
+            <div class="author-row">
+              <span class="author-name">Jiacheng Bao<sup>1, 2 *</sup></span>
+              <span class="author-name">Haoran Yang<sup>2, 3 *</sup></span>
+              <span class="author-name">Yucheng Xin<sup>2, 4 *</sup></span>
+              <span class="author-name">Junhong Liu<sup>1</sup></span>
+              <span class="author-name">Yuecheng Xu<sup>5</sup></span>
+            </div>
+            <div class="author-row">
+              <span class="author-name">Han Liang<sup>6</sup></span>
+              <span class="author-name">Pengfei Han<sup>2</sup></span>
+              <span class="author-name">Xiaoguang Ma<sup>7</sup></span>
+              <span class="author-name">Dong Wang<sup>2, †</sup></span>
+              <span class="author-name">Bin Zhao<sup>1, 2 †</sup></span>
+            </div>
+          </div>
+
+          <!-- Affiliations -->
+          <div class="affiliation-list">
+            <div class="affiliation-row">
+              <span class="affiliation"><sup>1</sup>Northwestern Polytechnical University</span>
+              <span class="affiliation"><sup>2</sup>Shanghai AI Laboratory</span>
+            </div>
+            <div class="affiliation-row">
+              <span class="affiliation"><sup>3</sup>University of Science and Technology of China</span>
+              <span class="affiliation"><sup>4</sup>Tsinghua University</span>
+            </div>
+            <div class="affiliation-row">
+              <span class="affiliation"><sup>5</sup>Fudan University</span>
+              <span class="affiliation"><sup>6</sup>ByteDance</span>
+              <span class="affiliation"><sup>7</sup>Northeastern University</span>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="author-notes">
+            <span><sup>*</sup>Equal contributions.</span>
+            <span><sup>†</sup>Corresponding author.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/vFGOVQhbUCo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (To be released)</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="PhyGile Teaser" style="width: 100%;">
+    </div>
+  </div>
+</section>
+
+
+<section class="section abstract-section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Humanoid robots are expected to execute agile and expressive whole-body motions in real-world settings. Existing text-to-motion generation models are predominantly trained on captured human motion datasets, whose priors assume human biomechanics, actuation, mass distribution, and contact strategies. When such motions are directly retargeted to humanoid robots, the resulting trajectories may satisfy geometric constraints (e.g., joint limits, pose continuity) and appear kinematically reasonable. However, they frequently violate the physical feasibility required for real-world execution.
+          </p>
+          <p>
+            To address these issues, we present PhyGile, a unified framework that closes the loop between robot-native motion generation and General Motion Tracking (GMT). PhyGile performs Physics-prefix-Guided robot-native motion generation at inference time, directly generating robot-native motions in a 262-dimensional skeletal space with physics-guided prefix, thereby eliminating inference-time retargeting artifacts and reducing generation–execution discrepancies.
+          </p>
+          <p>
+            Before physics-prefix adaptation, we train the GMT controller with a curriculum-based mixture-of-experts scheme, followed by post-training on unlabeled motion data, to improve robustness over large-scale robot motions. During physics-prefix adaptation, the GMT controller is further fine-tuned with generated objectives under physics-derived prefixes, enabling agile and stable execution of complex motions on real robots.
+          </p>
+          <p>
+            Extensive offline and real-robot experiments demonstrate that our PhyGile expands the frontier of text-driven humanoid control, enabling stable tracking of agile, highly-difficult whole-body motions that go well beyond walking and low-dynamic motions typically achieved by prior methods.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/vFGOVQhbUCo?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method</h2>
+        <div class="content">
+          <img src="./static/images/method.png" alt="PhyGile Method" style="width: 100%;">
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-three-quarters">
+            <p class="has-text-justified" style="margin-top: 1rem; color: #555;">
+              <strong>Overview of PhyGile.</strong> 
+              <em>(Left) GMT:</em> A two-stage MoE tracker is first trained with curriculum-constrained routing to induce expert specialization, followed by global soft post-training with dynamic expert expansion to absorb persistently difficult motions. 
+              <em>(Right) Generation of Diffusion Policy:</em> A TP-MoE–conditioned robot-native diffusion model generating 262D robot motion sequences from text. 
+              <em>(Center) Motion Generation Fine-tuning:</em> Executable motion prefixes are concatenated with newly generated 1-second continuations and validated by pretrained GMT. Closed-loop simulation refinement further enforces dynamic feasibility and improves consistency between generated and trackable motions, and the fine-tuned GMT policy is deployed on real robots.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<!-- Results: Pipeline Comparison -->
+<section class="section results-section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <p class="has-text-centered subtitle is-6" style="color: #888; margin-bottom: 2.5rem;">
+      Comparison of generated motions, fine-tuned motions, and real robot deployment.
+    </p>
+
+    <!-- Group 1: High Kick -->
+    <div class="comparison-group" data-group="1">
+      <div class="comparison-row">
+        <div class="comparison-left">
+          <div class="comparison-cell">
+            <div class="cell-label generated-label">Generated Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="1">
+              <source src="./static/videos/high_kick_g_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label finetuned-label">Fine-tuned Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="1">
+              <source src="./static/videos/high_kick_f_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-cell text-cell">
+            <div class="motion-text-card">
+              <div class="motion-icon"><i class="fas fa-quote-left"></i></div>
+              <h3 class="motion-text-title">High Kick</h3>
+              <p class="motion-text-desc">A person performs a high kick, extending one leg upward with force and control.</p>
+            </div>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label real-label">Real Robot</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="1">
+              <source src="./static/videos/high_kick-r_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <button class="sync-play-btn" data-group="1"><i class="fas fa-pause"></i></button>
+        <div class="sync-progress-wrap">
+          <div class="sync-progress-bar" data-group="1"></div>
+        </div>
+        <span class="sync-time" data-group="1">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <!-- Group 2: 180° Spin Jump -->
+    <div class="comparison-group" data-group="2">
+      <div class="comparison-row">
+        <div class="comparison-left">
+          <div class="comparison-cell">
+            <div class="cell-label generated-label">Generated Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/jump_spin180_g_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label finetuned-label">Fine-tuned Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/jump_spin180_f_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-cell text-cell">
+            <div class="motion-text-card">
+              <div class="motion-icon"><i class="fas fa-quote-left"></i></div>
+              <h3 class="motion-text-title">180° Spin Jump</h3>
+              <p class="motion-text-desc">A person jumps and spins 180 degrees in the air before landing.</p>
+            </div>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label real-label">Real Robot</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/jump_spin180-1_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <button class="sync-play-btn" data-group="2"><i class="fas fa-pause"></i></button>
+        <div class="sync-progress-wrap">
+          <div class="sync-progress-bar" data-group="2"></div>
+        </div>
+        <span class="sync-time" data-group="2">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <!-- Group 3: 360° Spin Jump -->
+    <div class="comparison-group" data-group="3">
+      <div class="comparison-row">
+        <div class="comparison-left">
+          <div class="comparison-cell">
+            <div class="cell-label generated-label">Generated Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+              <source src="./static/videos/jump_spin360_g_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label finetuned-label">Fine-tuned Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+              <source src="./static/videos/jump_spin360_f_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-cell text-cell">
+            <div class="motion-text-card">
+              <div class="motion-icon"><i class="fas fa-quote-left"></i></div>
+              <h3 class="motion-text-title">360° Spin Jump</h3>
+              <p class="motion-text-desc">A person jumps and spins a full 360 degrees in the air before landing.</p>
+            </div>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label real-label">Real Robot</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+              <source src="./static/videos/jump_spin360-1_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <button class="sync-play-btn" data-group="3"><i class="fas fa-pause"></i></button>
+        <div class="sync-progress-wrap">
+          <div class="sync-progress-bar" data-group="3"></div>
+        </div>
+        <span class="sync-time" data-group="3">0:00 / 0:00</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- More Real Robot Videos -->
+<section class="section more-videos-section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">More Real Robot Results</h2>
+    <p class="has-text-centered subtitle is-6" style="color: #888; margin-bottom: 2.5rem;">
+      Diverse agile motions performed by the humanoid robot.
+    </p>
+
+    <div class="video-gallery">
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/breakdance-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Breakdance</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/cartwheel-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Cartwheel</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/crawl-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Crawl</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/frog_jump-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Frog Jump</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/hop-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Hop</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/jump-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Jump</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/monkey-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Monkey</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/punch-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Punch</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/spin_kick-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Spin Kick</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/wave-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Wave</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/kneel_warm_hands_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Kneel & Warm Hands</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>Coming soon.</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
