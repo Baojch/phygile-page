@@ -211,19 +211,103 @@
       Comparison of generated motions, fine-tuned motions, and real robot deployment.
     </p>
 
-    <!-- Group 1: High Kick -->
+    <!-- Group 1: Breakdance -->
     <div class="comparison-group" data-group="1">
       <div class="comparison-row">
         <div class="comparison-left">
           <div class="comparison-cell">
             <div class="cell-label generated-label">Generated Motion</div>
             <video muted playsinline preload="auto" class="sync-video" data-group="1">
-              <source src="./static/videos/high_kick_g_hq.mp4" type="video/mp4">
+              <source src="./static/videos/breakdance_g_small_hq.mp4" type="video/mp4">
             </video>
           </div>
           <div class="comparison-cell">
             <div class="cell-label finetuned-label">Fine-tuned Motion</div>
             <video muted playsinline preload="auto" class="sync-video" data-group="1">
+              <source src="./static/videos/breakdance_f_small_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-cell text-cell">
+            <div class="motion-text-card">
+              <div class="motion-icon"><i class="fas fa-quote-left"></i></div>
+              <h3 class="motion-text-title">Breakdance</h3>
+              <p class="motion-text-desc">A person performs a breakdance move with dynamic spins and floor work.</p>
+            </div>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label real-label">Real Robot</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="1">
+              <source src="./static/videos/breakdance-1_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <button class="sync-play-btn" data-group="1"><i class="fas fa-pause"></i></button>
+        <div class="sync-progress-wrap">
+          <div class="sync-progress-bar" data-group="1"></div>
+        </div>
+        <span class="sync-time" data-group="1">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <!-- Group 2: Cartwheel -->
+    <div class="comparison-group" data-group="2">
+      <div class="comparison-row">
+        <div class="comparison-left">
+          <div class="comparison-cell">
+            <div class="cell-label generated-label">Generated Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/cartwheel_g_small_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label finetuned-label">Fine-tuned Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/cartwheel_f_small_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-cell text-cell">
+            <div class="motion-text-card">
+              <div class="motion-icon"><i class="fas fa-quote-left"></i></div>
+              <h3 class="motion-text-title">Cartwheel</h3>
+              <p class="motion-text-desc">A person performs a cartwheel, rotating sideways with hands touching the ground.</p>
+            </div>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label real-label">Real Robot</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+              <source src="./static/videos/cartwheel-1_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <button class="sync-play-btn" data-group="2"><i class="fas fa-pause"></i></button>
+        <div class="sync-progress-wrap">
+          <div class="sync-progress-bar" data-group="2"></div>
+        </div>
+        <span class="sync-time" data-group="2">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <!-- Group 3: High Kick -->
+    <div class="comparison-group" data-group="3">
+      <div class="comparison-row">
+        <div class="comparison-left">
+          <div class="comparison-cell">
+            <div class="cell-label generated-label">Generated Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+              <source src="./static/videos/high_kick_g_hq.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comparison-cell">
+            <div class="cell-label finetuned-label">Fine-tuned Motion</div>
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
               <source src="./static/videos/high_kick_f_hq.mp4" type="video/mp4">
             </video>
           </div>
@@ -238,34 +322,34 @@
           </div>
           <div class="comparison-cell">
             <div class="cell-label real-label">Real Robot</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="1">
+            <video muted playsinline preload="auto" class="sync-video" data-group="3">
               <source src="./static/videos/high_kick-r_hq.mp4" type="video/mp4">
             </video>
           </div>
         </div>
       </div>
       <div class="sync-controls">
-        <button class="sync-play-btn" data-group="1"><i class="fas fa-pause"></i></button>
+        <button class="sync-play-btn" data-group="3"><i class="fas fa-pause"></i></button>
         <div class="sync-progress-wrap">
-          <div class="sync-progress-bar" data-group="1"></div>
+          <div class="sync-progress-bar" data-group="3"></div>
         </div>
-        <span class="sync-time" data-group="1">0:00 / 0:00</span>
+        <span class="sync-time" data-group="3">0:00 / 0:00</span>
       </div>
     </div>
 
-    <!-- Group 2: 180° Spin Jump -->
-    <div class="comparison-group" data-group="2">
+    <!-- Group 4: 180° Spin Jump -->
+    <div class="comparison-group" data-group="4">
       <div class="comparison-row">
         <div class="comparison-left">
           <div class="comparison-cell">
             <div class="cell-label generated-label">Generated Motion</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+            <video muted playsinline preload="auto" class="sync-video" data-group="4">
               <source src="./static/videos/jump_spin180_g_hq.mp4" type="video/mp4">
             </video>
           </div>
           <div class="comparison-cell">
             <div class="cell-label finetuned-label">Fine-tuned Motion</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+            <video muted playsinline preload="auto" class="sync-video" data-group="4">
               <source src="./static/videos/jump_spin180_f_hq.mp4" type="video/mp4">
             </video>
           </div>
@@ -280,34 +364,34 @@
           </div>
           <div class="comparison-cell">
             <div class="cell-label real-label">Real Robot</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="2">
+            <video muted playsinline preload="auto" class="sync-video" data-group="4">
               <source src="./static/videos/jump_spin180-1_hq.mp4" type="video/mp4">
             </video>
           </div>
         </div>
       </div>
       <div class="sync-controls">
-        <button class="sync-play-btn" data-group="2"><i class="fas fa-pause"></i></button>
+        <button class="sync-play-btn" data-group="4"><i class="fas fa-pause"></i></button>
         <div class="sync-progress-wrap">
-          <div class="sync-progress-bar" data-group="2"></div>
+          <div class="sync-progress-bar" data-group="4"></div>
         </div>
-        <span class="sync-time" data-group="2">0:00 / 0:00</span>
+        <span class="sync-time" data-group="4">0:00 / 0:00</span>
       </div>
     </div>
 
-    <!-- Group 3: 360° Spin Jump -->
-    <div class="comparison-group" data-group="3">
+    <!-- Group 5: 360° Spin Jump -->
+    <div class="comparison-group" data-group="5">
       <div class="comparison-row">
         <div class="comparison-left">
           <div class="comparison-cell">
             <div class="cell-label generated-label">Generated Motion</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+            <video muted playsinline preload="auto" class="sync-video" data-group="5">
               <source src="./static/videos/jump_spin360_g_hq.mp4" type="video/mp4">
             </video>
           </div>
           <div class="comparison-cell">
             <div class="cell-label finetuned-label">Fine-tuned Motion</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+            <video muted playsinline preload="auto" class="sync-video" data-group="5">
               <source src="./static/videos/jump_spin360_f_hq.mp4" type="video/mp4">
             </video>
           </div>
@@ -322,18 +406,18 @@
           </div>
           <div class="comparison-cell">
             <div class="cell-label real-label">Real Robot</div>
-            <video muted playsinline preload="auto" class="sync-video" data-group="3">
+            <video muted playsinline preload="auto" class="sync-video" data-group="5">
               <source src="./static/videos/jump_spin360-1_hq.mp4" type="video/mp4">
             </video>
           </div>
         </div>
       </div>
       <div class="sync-controls">
-        <button class="sync-play-btn" data-group="3"><i class="fas fa-pause"></i></button>
+        <button class="sync-play-btn" data-group="5"><i class="fas fa-pause"></i></button>
         <div class="sync-progress-wrap">
-          <div class="sync-progress-bar" data-group="3"></div>
+          <div class="sync-progress-bar" data-group="5"></div>
         </div>
-        <span class="sync-time" data-group="3">0:00 / 0:00</span>
+        <span class="sync-time" data-group="5">0:00 / 0:00</span>
       </div>
     </div>
 
@@ -352,18 +436,6 @@
     <div class="video-gallery">
       <div class="gallery-item">
         <video autoplay muted loop playsinline>
-          <source src="./static/videos/breakdance-1_hq.mp4" type="video/mp4">
-        </video>
-        <div class="gallery-label">Breakdance</div>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="./static/videos/cartwheel-1_hq.mp4" type="video/mp4">
-        </video>
-        <div class="gallery-label">Cartwheel</div>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
           <source src="./static/videos/crawl-1_hq.mp4" type="video/mp4">
         </video>
         <div class="gallery-label">Crawl</div>
@@ -376,9 +448,9 @@
       </div>
       <div class="gallery-item">
         <video autoplay muted loop playsinline>
-          <source src="./static/videos/hop-1_hq.mp4" type="video/mp4">
+          <source src="./static/videos/monkey-1_hq.mp4" type="video/mp4">
         </video>
-        <div class="gallery-label">Hop</div>
+        <div class="gallery-label">Monkey</div>
       </div>
       <div class="gallery-item">
         <video autoplay muted loop playsinline>
@@ -388,21 +460,21 @@
       </div>
       <div class="gallery-item">
         <video autoplay muted loop playsinline>
-          <source src="./static/videos/monkey-1_hq.mp4" type="video/mp4">
+          <source src="./static/videos/hop-1_hq.mp4" type="video/mp4">
         </video>
-        <div class="gallery-label">Monkey</div>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="./static/videos/punch-1_hq.mp4" type="video/mp4">
-        </video>
-        <div class="gallery-label">Punch</div>
+        <div class="gallery-label">Hop</div>
       </div>
       <div class="gallery-item">
         <video autoplay muted loop playsinline>
           <source src="./static/videos/spin_kick-1_hq.mp4" type="video/mp4">
         </video>
         <div class="gallery-label">Spin Kick</div>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="./static/videos/punch-1_hq.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-label">Punch</div>
       </div>
       <div class="gallery-item">
         <video autoplay muted loop playsinline>

@@ -2,7 +2,7 @@
 
 This is the project page for **PhyGile**.
 
-### [Project Page](https://phygile.github.io) | [Paper (Coming Soon)]() | [Video](https://youtu.be/vFGOVQhbUCo)
+### [Project Page](https://baojch.github.io/phygile-page/) | [Paper (Coming Soon)]() | [Video](https://youtu.be/vFGOVQhbUCo)
 
 ## Code
 
