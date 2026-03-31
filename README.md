@@ -11,14 +11,11 @@ Coming soon.
 ## Citation
 
 ```bibtex
-@misc{bao2026phygilephysicsprefixguidedmotion,
-      title={PhyGile: Physics-Prefix Guided Motion Generation for Agile General Humanoid Motion Tracking}, 
-      author={Jiacheng Bao and Haoran Yang and Yucheng Xin and Junhong Liu and Yuecheng Xu and Han Liang and Pengfei Han and Xiaoguang Ma and Dong Wang and Bin Zhao},
-      year={2026},
-      eprint={2603.19305},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2603.19305}, 
+@article{bao2026phygile,
+  title={PhyGile: Physics-Prefix Guided Motion Generation for Agile General Humanoid Motion Tracking},
+  author={Bao, Jiacheng and Yang, Haoran and Xin, Yucheng and Liu, Junhong and Xu, Yuecheng and Liang, Han and Han, Pengfei and Ma, Xiaoguang and Wang, Dong and Zhao, Bin},
+  journal={arXiv preprint arXiv:2603.19305},
+  year={2026}
 }
 ```
 
