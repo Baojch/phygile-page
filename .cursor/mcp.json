@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "Mr-mcp-message": {
+      "command": "node",
+      "args": [
+        "/Applications/CursorMr.app/Contents/Resources/mcp/mcp-server.mjs"
+      ],
+      "env": {
+        "MESSENGER_DATA_DIR": "/Users/bjc/.cursor-mr-message/44cba28e9da1",
+        "MESSENGER_MCP_DISPLAY_NAME": "Mr-mcp-message",
+        "MESSENGER_HEARTBEAT_INTERVAL_MS": "6000",
+        "MESSENGER_MAX_WAIT_MS": "90000",
+        "MESSENGER_POLL_INTERVAL_MS": "300"
+      }
+    }
+  }
+}

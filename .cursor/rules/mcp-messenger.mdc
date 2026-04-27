@@ -1,0 +1,30 @@
+---
+description: "通过 CursorMr 与 Cursor Agent 联动：消息检查与结构化提问"
+globs: "**/*"
+alwaysApply: true
+---
+
+<!-- CursorMr: 由客户端添加/同步工作区时自动生成；在 CursorMr 中移除工作区时可一同删除 -->
+
+# MCP 工具调用规则（CursorMr）
+
+本规则配合 **CursorMr 桌面客户端** 使用：Agent 通过 Cursor 的 MCP 与客户端交换提问、回复与队列。以下「客户端」均指 **CursorMr**（含 MCP 消息、会话与工作区相关界面）。在 Cursor 「MCP」列表中，本服务显示名为 **「Mr-mcp-message」**，且须与项目内 `.cursor/mcp.json` 的 `mcpServers` 键名一致。
+
+1. 每轮对话回复**完整输出后**，最后一步必须调用 `check_messages`，适用于 Agent/Plan/Debug/Ask 所有模式，无一例外
+2. `check_messages` 会持续等待直到用户发来新消息；收到后处理并回复，然后再次调用 `check_messages`，形成永续循环：回复 → check_messages → 收到消息 → 回复 → check_messages
+3. 严禁在回合开始时或回复未完成时调用 `check_messages`；唯一豁免：用户明确要求结束对话
+4. Plan 模式写完方案后、Debug 模式分析完问题后、Ask 模式回答完问题后，均不得直接结束对话，必须调用 `check_messages` 等待用户反馈
+5. 需要用户做选择或确认时（选方案、选框架、确认操作等），必须调用 `ask_question`；严禁使用 Cursor 内置的 ask_user_question
+6. `ask_question` 参数格式: `{ "questions": [{ "question": "问题文本", "options": [{ "id": "a", "label": "选项A" }, { "id": "b", "label": "选项B" }], "allow_multiple": false }] }`
+7. 单选: `allow_multiple: false`（用户只能选一个）；多选: `allow_multiple: true`（用户可选多个）；同一 `questions` 数组可混合包含单选题和多选题
+8. 用户在每道题中均可额外输入自定义补充文本（Other 输入框），无需为此添加额外选项
+9. `ask_question` 收到用户回答后，处理完毕仍需调用 `check_messages` 继续监听
+10. 禁止在每轮结束时用 `ask_question` 问「还有别的需要吗」，回合结束只用 `check_messages`；`ask_question` 仅限任务中确实需要用户决策时使用
+11. `check_messages` 支持可选参数 `reply`（string，Markdown 格式）：调用时传入本轮回复的摘要/结论，**CursorMr 客户端**将用弹窗展示给用户。格式: `{ "reply": "## 结论\n修改完成..." }`
+12. 当会话结束前，建议在调用 `check_messages` 时附带 `reply` 参数，将关键结论推到客户端；如果本轮无需特别总结，`reply` 可省略
+13. 禁止调用 subagent 并发任务
+14. 如果 `check_messages` 或 `ask_question` 因客户端取消、连接抖动或内部异常而意外返回/报错，且用户未明确要求结束对话，严禁把这类内部提示直接输出给用户，必须立刻再次调用对应工具继续等待
+15. 严禁调用 Composer 或自动切换到 Composer 模式，所有任务必须在当前 Agent 对话中完成
+
+---
+**回合结束（强制）**: 仅当回复**完整输出完毕后**，最后一步必须调用 MCP「Mr-mcp-message」的 `check_messages` 工具（使用 CallMcpTool，server 为 Cursor 中该 MCP 的标识「Mr-mcp-message」，toolName 为 `check_messages`，arguments 可为 `{}` 或包含 `reply`）。严禁在回合开始或回复完成前调用。`ask_question` 仅用于任务中需要用户做选择时（如选框架、选方案）。
