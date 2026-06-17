@@ -4,6 +4,11 @@ This is the project page for **PhyGile**.
 
 ### [Project Page](https://baojch.github.io/phygile-page/) | [Paper](https://arxiv.org/pdf/2603.19305) | [arXiv](https://arxiv.org/abs/2603.19305) | [Video](https://youtu.be/vFGOVQhbUCo)
 
+## Code
+
+- [phygile_mogen](https://github.com/Baojch/phygile_mogen): Motion generation
+- [phygile_tracking](https://github.com/Baojch/phygile_tracking): General motion tracking
+
 ## Citation
 
 ```bibtex
